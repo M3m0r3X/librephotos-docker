@@ -43,6 +43,19 @@ services:
     image: reallibrephotos/librephotos-frontend:${tag}
     container_name: frontend
     restart: unless-stopped
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.pics2.entrypoints=web"
+      - "traefik.http.routers.pics2.rule=Host(`pics.bit-cave.de`)"
+      - "traefik.http.middlewares.pics2-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.pics2.middlewares=books-https-redirect"
+      - "traefik.http.routers.pics2-secure.entrypoints=websecure"
+      - "traefik.http.routers.pics2-secure.rule=Host(`pics.bit-cave.de`)"
+      - "traefik.http.routers.pics2-secure.tls=true"
+      - "traefik.http.routers.pics2-secure.tls.certresolver=lets-encr"
+      - "traefik.http.routers.pics2.service=pics2"
+      - "traefik.http.services.pics2.loadbalancer.server.port=3000"
+      - "traefik.docker.network=traefik"  
 
   backend:
     image: reallibrephotos/librephotos:${tag}
@@ -75,3 +88,8 @@ services:
     depends_on:
       db:
         condition: service_healthy
+
+networks:
+  default:
+    external:
+      name: traefik  
