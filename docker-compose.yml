@@ -69,9 +69,9 @@ services:
     environment:
       - SECRET_KEY=${shhhhKey:-}
       - BACKEND_HOST=backend
-      - ADMIN_EMAIL=${adminEmail:-}
-      - ADMIN_USERNAME=${userName:-}
-      - ADMIN_PASSWORD=${userPass:-}
+      - ADMIN_EMAIL=${adminEmail}
+      - ADMIN_USERNAME=${userName}
+      - ADMIN_PASSWORD=${userPass}
       - DB_BACKEND=postgresql
       - DB_NAME=${dbName}
       - DB_USER=${dbUser}
