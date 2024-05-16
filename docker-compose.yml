@@ -46,11 +46,11 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.pics2.entrypoints=web"
-      - "traefik.http.routers.pics2.rule=Host(`pics.bit-cave.de`)"
+      - "traefik.http.routers.pics2.rule=Host(`pics2.bit-cave.de`)"
       - "traefik.http.middlewares.pics2-https-redirect.redirectscheme.scheme=https"
       - "traefik.http.routers.pics2.middlewares=books-https-redirect"
       - "traefik.http.routers.pics2-secure.entrypoints=websecure"
-      - "traefik.http.routers.pics2-secure.rule=Host(`pics.bit-cave.de`)"
+      - "traefik.http.routers.pics2-secure.rule=Host(`pics2.bit-cave.de`)"
       - "traefik.http.routers.pics2-secure.tls=true"
       - "traefik.http.routers.pics2-secure.tls.certresolver=lets-encr"
       - "traefik.http.routers.pics2.service=pics2"
